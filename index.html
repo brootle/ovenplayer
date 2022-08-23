@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/ovenplayer@0.10.16/dist/ovenplayer.js"></script>
+
+    <title>WebRTC Player</title>
+</head>
+<body>
+    <div style="max-width: 600px">
+        <div id="player"></div>
+    </div>
+    
+    <div>
+        <input id='url' type="text">
+        <button id='start'>Start</button>
+    </div>
+    <script>
+
+        let playerOption = {
+            autoStart: true,
+            autoFallback: true,
+            mute: false,
+            sources: []
+        };             
+
+        let startBtn = document.getElementById('start')
+        startBtn.addEventListener('click', () => {
+            console.log("load player")
+
+            const url = document.getElementById('url').value
+            console.log("url: ", url)
+                   
+            const player = OvenPlayer.create("player", {
+            "autoStart": true,
+            "autoFallback": true,
+            "mute": false,
+            "sources": [{
+                "type": "webrtc",
+                "file": url
+            }]
+        });               
+
+        })
+    </script>
+</body>
+</html>
